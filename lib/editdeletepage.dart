@@ -20,6 +20,8 @@ class _editdeleteState extends State<editdelete> {
   Database? db;
   List<Map> mm = [];
   List image = [];
+  String? date;
+  String? time;
 
   Color cardcolor = Colors.red;
 
@@ -32,6 +34,10 @@ class _editdeleteState extends State<editdelete> {
     String descri2 = widget.mm['descri'];
     descri.text = descri2;
     id = widget.mm['id'];
+    date=widget.mm['date'];
+    time=widget.mm['time'];
+
+
 
 
     getalldata();
@@ -81,10 +87,10 @@ class _editdeleteState extends State<editdelete> {
                 height: bodyheight * 0.05,
               ),
               Container(
-                height: bodyheight * 0.40,
+                height: bodyheight * 0.45,
+                width: twidth*0.60,
                 margin: EdgeInsets.all(bodyheight * 0.05),
                 decoration: BoxDecoration(
-                    color: Colors.yellow,
                     border: Border.all(
                         color: Colors.black, width: 2)
                     ),
@@ -123,11 +129,28 @@ class _editdeleteState extends State<editdelete> {
                         ),
                       ),
                     ),
+                    Center(
+                      child: Container(height: bodyheight*0.02,
+                        child: Row(
+                          children: [ Text(
+                            "Date : ",style: TextStyle(fontWeight:FontWeight.bold ),
+                          ), Text(
+                            "${date}",
+                          ),
+                            Text(
+                              "Time : ",style: TextStyle(fontWeight:FontWeight.bold ),
+                            ),
+                            Text(
+                              "${time}",
+                            )],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
-                height: bodyheight * 0.25,
+                height: bodyheight * 0.20,
               ),
               // Container(
               //     height: bodyheight * 0.15,
@@ -172,7 +195,7 @@ class _editdeleteState extends State<editdelete> {
                       onTap: () {
                         Navigator.pushReplacement(context, MaterialPageRoute(
                           builder: (context) {
-                            return edit(widget.mm, widget.database);
+                            return edit(widget.mm, widget.database,);
                           },
                         ));
                       },

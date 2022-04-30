@@ -186,20 +186,20 @@ class _noteState extends State<note> {
                 ],
               )),
             ),
-            // floatingActionButton: FloatingActionButton.extended(
-            //     backgroundColor: Color(0x7e0a5163),
-            //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
-            //     onPressed: () {
-            //       Navigator.pushReplacement(context, MaterialPageRoute(
-            //         builder: (context) {
-            //           return insertpage1();
-            //         },
-            //       ));
-            //     },
-            //     label: Text(
-            //       "Report",
-            //       style: TextStyle(fontSize: bodyheight * 0.04),
-            //     )),
+            floatingActionButton: FloatingActionButton.extended(
+                backgroundColor: Color(0x7e0a5163),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(
+                    builder: (context) {
+                      return insertpage1();
+                    },
+                  ));
+                },
+                label: Text(
+                  "Report",
+                  style: TextStyle(fontSize: bodyheight * 0.04),
+                )),
           )
         : Center(child: CircularProgressIndicator());
   }

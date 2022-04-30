@@ -11,7 +11,7 @@ class insertpage1 extends StatefulWidget {
   // String descri1;
   // Database database;
   // insertpage1(this.title1, this.descri1, this.database);
-
+                                                                
   @override
   State<insertpage1> createState() => _insertpage1State();
 }
@@ -80,10 +80,9 @@ class _insertpage1State extends State<insertpage1> {
                           ));
                         },
                         child: Container(
-                            height: bodyheight * 0.35,
+                            height: bodyheight * 0.32,
                             margin: EdgeInsets.all(bodyheight * 0.02),
                             decoration: BoxDecoration(
-                                color: Colors.red,
                                 border: Border.all(width: 2),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
@@ -95,14 +94,35 @@ class _insertpage1State extends State<insertpage1> {
                                   ),
                                 ),
                                 Container(
-                                    height: bodyheight * 0.29,
+                                    height: bodyheight * 0.20,
                                     width: twidth*0.42,
                                     decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image:
                                                 AssetImage("images/paper1.jpg"),
                                             fit: BoxFit.fitWidth)),
-                                    child: Text("${mm[index]['descri']}"))
+                                    child: Text("${mm[index]['descri']}")),
+                                Container(height: bodyheight*0.02,
+                                  child: Row(
+                                    children: [ Text(
+                                      "Date :  ",style: TextStyle(fontWeight:FontWeight.bold ),
+                                    ), Text(
+                                      "${mm[index]['date']}",
+                                    ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: bodyheight*0.01,),
+                                Container(height: bodyheight*0.02,
+                                  child: Row(
+                                    children: [ Text(
+                                      "Time :  ",style: TextStyle(fontWeight:FontWeight.bold ),
+                                    ), Text(
+                                      "${mm[index]['time']}",
+                                    ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             )),
                       );
@@ -110,6 +130,7 @@ class _insertpage1State extends State<insertpage1> {
                   ),
                 )),
           ),
+
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -121,7 +142,7 @@ class _insertpage1State extends State<insertpage1> {
           ));
         },
         label: Text(
-          "Save",
+          "Next",
           style: TextStyle(fontSize: bodyheight * 0.03),
         ),
         backgroundColor: Color(0x7e0a5163),

@@ -14,16 +14,16 @@ class datahelp{
         onCreate: (Database db, int version) async {
           // When creating the db, create the table
           await db.execute(
-              'create table notebook (id integer primary key autoincrement, title Text, descri Text)');
+              'create table notebook (id integer primary key autoincrement, title Text, descri Text, date Text, time Text)');
         });
 
     return database;
 
   }
 
-  Future<void> inserdata(String title1, String descri1, Database database) async {
+  Future<void> inserdata(String title1, String descri1, Database database, String date1, String time1,) async {
 
-   String insertqry="insert into notebook (title,descri) values ('$title1','$descri1')";
+   String insertqry="insert into notebook (title,descri,date,time) values ('$title1','$descri1','$date1','$time1')";
        int cnt= await database.rawInsert(insertqry);
        print(cnt);
        

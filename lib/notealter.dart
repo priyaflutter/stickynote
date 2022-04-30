@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stickynote/insertpage.dart';
 import 'package:stickynote/main.dart';
@@ -19,8 +19,7 @@ class _notealter1State extends State<notealter1> {
   int boxcolor = 0x7e0a5163;
   String date = "";
   String time = "";
-  String title1 = "";
-  String descri1 = "";
+
 
 
 
@@ -180,7 +179,8 @@ class _notealter1State extends State<notealter1> {
                                                   ).then((value) {
                                                     
                                                     setState(() {
-                                                      time = "${value!.hour.toString()}:${value!.minute.toString()}";
+                                                      // time = "${value!.hour.toString()}:${value!.minute.toString()}";
+                                                      time="${DateFormat.jm().format(DateFormat("hh:mm:ss").parse(value!.hour.toString()+':'+value!.minute.toString()+':00'))}";
                                                     });
                                                   });
 
@@ -232,10 +232,11 @@ class _notealter1State extends State<notealter1> {
                     ),
                   ),
                   Container(
-                    height: bodyheight * 0.40,
+                    height: bodyheight * 0.45,
+                    width: twidth*0.70,
                     margin: EdgeInsets.all(bodyheight * 0.05),
                     decoration: BoxDecoration(
-                        color: Color(0x7e0a5163),
+                        // color: Color(0x7e0a5163),
                         border: Border.all(color: Colors.black, width: 2)),
                     child: Column(
                       children: [
@@ -274,6 +275,24 @@ class _notealter1State extends State<notealter1> {
                             ),
                           ),
                         ),
+                        Center(
+                          child: Container(height: bodyheight*0.02,
+                            child: Row(
+                              children: [ Text(
+                                "Date : ",style: TextStyle(fontWeight:FontWeight.bold ),
+                              ), Text(
+                                "${date}",
+                              ),
+                                Text(
+                                  "Time : ",style: TextStyle(fontWeight:FontWeight.bold ),
+                                ),
+                                Text(
+                                  "${time}",
+                                )],
+                            ),
+                          ),
+                        ),
+
                       ],
                     ),
                   ),
@@ -287,9 +306,11 @@ class _notealter1State extends State<notealter1> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                               title1 = title.text;
-                               descri1 = descri.text;
-                              datahelp().inserdata(title1, descri1, db!);
+                               String title1 = title.text;
+                               String  descri1 = descri.text;
+                               String date1=date.toString();
+                               String time1=time.toString();
+                              datahelp().inserdata(title1, descri1, db!,date1,time1);
 
                               AwesomeDialog(
                                 context: context,
@@ -378,24 +399,35 @@ class _notealter1State extends State<notealter1> {
                                 backgroundColor: MaterialStateProperty.all(
                                     Color(0x7e0a5163))),
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(
-                                builder: (context) {
-                                  return insertpage1();
-                                },
-                              ));
-                            },
-                            child: Text(
-                              "Report",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 20),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    Color(0x7e0a5163))),
-                          ),
+
+                          ElevatedButton(onPressed: () {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                      return insertpage1();
+                            },));
+                          }, child: Text("Next", style:
+                              TextStyle(color: Colors.black, fontSize: 20),
+                          ),style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Color(0x7e0a5163))),
+                          )
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     Navigator.pushReplacement(context,
+                          //         MaterialPageRoute(
+                          //       builder: (context) {
+                          //         return insertpage1();
+                          //       },
+                          //     ));
+                          //   },
+                          //   child: Text(
+                          //     "Report",
+                          //     style:
+                          //         TextStyle(color: Colors.black, fontSize: 20),
+                          //   ),
+                          //   style: ButtonStyle(
+                          //       backgroundColor: MaterialStateProperty.all(
+                          //           Color(0x7e0a5163))),
+                          // ),
                         ],
                       ))
                 ],
