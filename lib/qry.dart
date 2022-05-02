@@ -21,7 +21,7 @@ class datahelp{
 
   }
 
-  Future<void> inserdata(String title1, String descri1, Database database, String date1, String time1,) async {
+  Future<void> inserdata(String title1, String descri1, Database database, String date1, String time1) async {
 
    String insertqry="insert into notebook (title,descri,date,time) values ('$title1','$descri1','$date1','$time1')";
        int cnt= await database.rawInsert(insertqry);

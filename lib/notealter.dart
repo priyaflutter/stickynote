@@ -16,9 +16,10 @@ class notealter1 extends StatefulWidget {
 class _notealter1State extends State<notealter1> {
   String? box;
   Database? db;
-  int boxcolor = 0x7e0a5163;
+  String boxcolor = "0x7e0a5163";
   String date = "";
   String time = "";
+  // String color1="";
 
 
 
@@ -150,8 +151,10 @@ class _notealter1State extends State<notealter1> {
                                                           child: child!);
                                                     },
                                                   ).then((value) {
-                                                      date =
-                                                          "${value!.day.toString()}/${value!.month.toString()}/${value!.year.toString()}";
+                                                      setState(() {
+                                                        date =
+                                                            "${value!.day.toString()}/${value!.month.toString()}/${value!.year.toString()}";
+                                                      });
                                                   });
                                                   
                                                 },
@@ -243,9 +246,10 @@ class _notealter1State extends State<notealter1> {
                         Container(
                           height: bodyheight * 0.10,
                           width: twidth * 0.70,
-                          decoration: BoxDecoration(color: Color(boxcolor)),
+                          decoration: BoxDecoration(color: Color(int.parse(boxcolor))),
                           child: TextField(
                             controller: title,
+                            toolbarOptions: ToolbarOptions(copy: true,cut: true,paste: true,selectAll: true),
                             decoration: InputDecoration(
                               labelText: "Title",
                               contentPadding:
@@ -265,6 +269,7 @@ class _notealter1State extends State<notealter1> {
                                   fit: BoxFit.fitWidth)),
                           child: TextField(
                             maxLines: 20,
+                            toolbarOptions: ToolbarOptions(copy: true,cut: true,paste: true,selectAll: true),
                             controller: descri,
                             decoration: InputDecoration(
                               labelText: "Description",
@@ -276,7 +281,7 @@ class _notealter1State extends State<notealter1> {
                           ),
                         ),
                         Center(
-                          child: Container(height: bodyheight*0.02,
+                          child: Container(height: bodyheight*0.05,
                             child: Row(
                               children: [ Text(
                                 "Date : ",style: TextStyle(fontWeight:FontWeight.bold ),
@@ -310,6 +315,7 @@ class _notealter1State extends State<notealter1> {
                                String  descri1 = descri.text;
                                String date1=date.toString();
                                String time1=time.toString();
+                               // String color1=color.toString();
                               datahelp().inserdata(title1, descri1, db!,date1,time1);
 
                               AwesomeDialog(
@@ -373,7 +379,7 @@ class _notealter1State extends State<notealter1> {
                                         return InkWell(
                                           onTap: () {
                                             Navigator.pop(context);
-                                            boxcolor = mycolor1[index];
+                                            boxcolor =mycolor1[index].toString();
                                             setState(() {});
                                           },
                                           child: Container(
@@ -485,4 +491,14 @@ class _notealter1State extends State<notealter1> {
     0x36F4E4FF,
     0x6F8946FF
   ];
+
+  // List<String> mycolor1 = [
+  //   "0x7e0a5163",
+  //   "0x36F4A2FF",
+  //   "0x5336F4FF",
+  //   "0x36F4A8FF",
+  //   "0x9B36F4FF",
+  //   "0x36F4E4FF",
+  //   "0x6F8946FF"
+  // ];
 }
